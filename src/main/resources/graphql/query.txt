@@ -1,0 +1,64 @@
+query library {
+  getAllBooks {
+    id
+    title
+    authors {
+        id
+        name
+      	books {
+          id
+          title
+        }
+    }
+  }
+}
+
+query library {
+  getBooksByAuthor(author: {
+    # id: 1
+    name: "Виктор Гамов"
+  }) {
+    id
+    title
+  }
+}
+
+query library {
+  getAuthor(name: "Виктор Гамов") {
+    id
+    name
+    books {
+      id
+      title
+      authors {
+        id
+      }
+    }
+  }
+}
+
+mutation library {
+  saveAuthor(
+      name: "New Author"
+      books: [
+        {title: "New Book"}
+      ]
+  )
+  {
+    id
+    name
+  }
+}
+
+mutation library {
+  saveBook(
+      title: "New AuthorBook"
+      authors: [
+        {name: "New Book Author"}
+      ]
+  )
+  {
+    id
+    title
+  }
+}
